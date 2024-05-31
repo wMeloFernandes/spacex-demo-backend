@@ -6,6 +6,7 @@ import { db } from '../models';
 import { cleanDb } from '../helpers/testHelpers';
 import fetch from 'node-fetch';
 import { umzug } from '../migrate'
+import { faker } from '@faker-js/faker';
 
 const populate = async () => {
   await cleanDb();
@@ -33,6 +34,13 @@ const populate = async () => {
   );
 
   const shipIds = shipRows.map((ship) => ship.dataValues.id)
+
+  await Promise.all(shipIds.map((shipId) => {
+    return db.Mission.create({
+      name: faker.music.songName(),
+      shipId
+    })
+  }))
 
   await db.sequelize.close();
 };
