@@ -32,7 +32,7 @@ class Mission extends Model<
                 },
                 name: { type: DataTypes.STRING, allowNull: false },
                 shipId: {
-                    type: DataTypes.STRING, allowNull: false, references: {
+                    type: DataTypes.UUID, allowNull: false, references: {
                         model: 'ships',
                         key: 'id'
                     }
