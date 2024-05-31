@@ -29,7 +29,6 @@ module.exports = {
             },
         })
     },
-
     down(query) {
         return query.dropTable('missions')
     },
