@@ -32,6 +32,9 @@ const db = {
   Mission: Mission.initModel(sequelize)
 };
 
+db.Ship.hasMany(db.Mission, { foreignKey: 'shipId' })
+db.Mission.belongsTo(db.Ship, { foreignKey: 'shipId' })
+
 Object.keys(db).map(key => {
   if (db[key].associate) {
     db[key].associate(db);
