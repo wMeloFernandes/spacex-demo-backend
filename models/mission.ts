@@ -31,7 +31,12 @@ class Mission extends Model<
                     defaultValue: DataTypes.UUIDV4,
                 },
                 name: { type: DataTypes.STRING, allowNull: false },
-                shipId: { type: DataTypes.STRING, allowNull: false },
+                shipId: {
+                    type: DataTypes.STRING, allowNull: false, references: {
+                        model: 'ships',
+                        key: 'id'
+                    }
+                },
                 createdAt: { type: DataTypes.DATE, allowNull: false },
                 updatedAt: { type: DataTypes.DATE, allowNull: false },
             },
