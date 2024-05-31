@@ -21,7 +21,7 @@ const populate = async () => {
     .then(res => res.json())
     .then(data => data.data.ships);
 
-  await Promise.all(
+  const shipRows = await Promise.all(
     ships.map((ship: any) => {
       return db.Ship.create({
         active: ship.active,
@@ -31,6 +31,8 @@ const populate = async () => {
       });
     }),
   );
+
+  const shipIds = shipRows.map((ship) => ship.dataValues.id)
 
   await db.sequelize.close();
 };
